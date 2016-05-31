@@ -1,0 +1,395 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <!-- index.html -- Show images of IR remote controls and handle pressed buttons. -->
+  <!-- The pressed buttons are translated in IR-codes which will be forwarded to the ESP8266. -->
+  <!-- Ed Smallenburg 31-may-2016. -->
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>Infrared sender</title>
+</head>
+<body style="background-color: rgb(102, 102, 102);">
+<img src="samsung.jpg" alt="samsung rcimage" usemap="#samsungmap" height="513" width="127"> &nbsp;
+<img src="itv.jpg"     alt="itv rcimage"     usemap="#itvmap"     height="513" width="127"> &nbsp;
+<img src="lg.jpg"      alt="itv rcimage"     usemap="#lgmap"      height="513" width="127"> 
+<audio id="tick" src="tick.wav" preload="auto"></audio> <map name="samsungmap">
+
+<area shape="rect" coords="16, 22, 46, 50" onclick="smklik('power')" href="#">
+<area shape="rect" coords="83, 23,113, 50" onclick="smklik('tvscr')" href="#">
+<area shape="rect" coords="19, 54, 39, 71" onclick="smklik('bd')" href="#">
+<area shape="rect" coords="41, 56, 64, 72" onclick="smklik('tv')" href="#">
+<area shape="rect" coords="67, 56, 88, 72" onclick="smklik('eject')" href="#">
+<area shape="rect" coords="91, 56,111, 71" onclick="smklik('sleep')" href="#">
+<area shape="rect" coords="18, 79, 46, 99" onclick="smklik('one')" href="#">
+<area shape="rect" coords="52, 79, 80, 99" onclick="smklik('two')" href="#">
+<area shape="rect" coords="85, 78,113, 99" onclick="smklik('three')" href="#">
+<area shape="rect" coords="18,103, 46,122" onclick="smklik('four')" href="#">
+<area shape="rect" coords="52,103, 80,123" onclick="smklik('five')" href="#">
+<area shape="rect" coords="86,104,113,123" onclick="smklik('six')" href="#">
+<area shape="rect" coords="19,129, 46,149" onclick="smklik('seven')" href="#">
+<area shape="rect" coords="53,128, 80,148" onclick="smklik('eight')" href="#">
+<area shape="rect" coords="85,128,113,148" onclick="smklik('nine')" href="#">
+<area shape="rect" coords="19,153, 46,174" onclick="smklik('fullscrn')" href="#">
+<area shape="rect" coords="52,154, 79,173" onclick="smklik('zero')" href="#">
+<area shape="rect" coords="85,153,112,174" onclick="smklik('repeat')" href="#">
+<area shape="rect" coords="19,179, 40,195" onclick="smklik('skipback')" href="#">
+<area shape="rect" coords="43,179, 64,195" onclick="smklik('skip')" href="#">
+<area shape="rect" coords="68,179, 89,195" onclick="smklik('rewind')" href="#">
+<area shape="rect" coords="93,179,113,194" onclick="smklik('forward')" href="#">
+<area shape="rect" coords="19,198, 48,225" onclick="smklik('stop')" href="#">
+<area shape="rect" coords="52,199, 81,225" onclick="smklik('play')" href="#">
+<area shape="rect" coords="84,199,113,225" onclick="smklik('pause')" href="#">
+<area shape="rect" coords="18,230, 52,254" onclick="smklik('volplus')" href="#">
+<area shape="rect" coords="52,199, 78,248" onclick="smklik('mute')" href="#">
+<area shape="rect" coords="81,231,113,256" onclick="smklik('prgplus')" href="#">
+<area shape="rect" coords="18,250, 52,282" onclick="smklik('volmin')" href="#">
+<area shape="rect" coords="54,263, 77,282" onclick="smklik('vsound')" href="#">
+<area shape="rect" coords="80,260,113,282" onclick="smklik('prgmin')" href="#">
+<area shape="rect" coords="19,287, 46,307" onclick="smklik('dskmenu')" href="#">
+<area shape="rect" coords="53,287, 80,306" onclick="smklik('menu')" href="#">
+<area shape="rect" coords="85,287,113,307" onclick="smklik('ttlmnu')" href="#">
+<area shape="rect" coords="19,313, 47,334" onclick="smklik('tools')" href="#">
+<area shape="rect" coords="53,315, 78,338" onclick="smklik('curup')" href="#">
+<area shape="rect" coords="86,313,113,334" onclick="smklik('info')" href="#">
+<area shape="rect" coords="20,339, 47,361" onclick="smklik('curleft')" href="#">
+<area shape="rect" coords="53,340, 79,358" onclick="smklik('enter')" href="#">
+<area shape="rect" coords="86,342,111,358" onclick="smklik('curright')" href="#">
+<area shape="rect" coords="20,365, 47,386" onclick="smklik('return')" href="#">
+<area shape="rect" coords="53,361, 78,385" onclick="smklik('curdown')" href="#">
+<area shape="rect" coords="87,365,113,386" onclick="smklik('exit')" href="#">
+<area shape="rect" coords="20,394, 39,407" onclick="smklik('red')" href="#">
+<area shape="rect" coords="45,393, 63,407" onclick="smklik('green')" href="#">
+<area shape="rect" coords="68,392, 88,407" onclick="smklik('yellow')" href="#">
+<area shape="rect" coords="93,391,113,407" onclick="smklik('blue')" href="#">
+<area shape="rect" coords="20,414, 39,430" onclick="smklik('smart')" href="#">
+<area shape="rect" coords="44,415, 64,430" onclick="smklik('search')" href="#">
+<area shape="rect" coords="69,415, 88,430" onclick="smklik('level')" href="#">
+<area shape="rect" coords="93,415,113,430" onclick="smklik('threed')" href="#">
+<area shape="rect" coords="19,436, 39,450" onclick="smklik('sound')" href="#">
+<area shape="rect" coords="44,436, 64,450" onclick="smklik('free')" href="#">
+<area shape="rect" coords="69,436, 88,450" onclick="smklik('dsp')" href="#">
+<area shape="rect" coords="93,436,113,450" onclick="smklik('vtuner')" href="#">
+</map>
+
+<map name="itvmap">
+
+<area shape="rect" coords="11, 26, 60, 43" onclick="itklik('tv')" href="#">
+<area shape="rect" coords="65, 25,115, 42" onclick="itklik('power')" href="#">
+<area shape="rect" coords="10, 57, 43, 74" onclick="itklik('rewind')" href="#">
+<area shape="rect" coords="47, 51, 77, 77" onclick="itklik('play')" href="#">
+<area shape="rect" coords="83, 56,114, 74" onclick="itklik('forward')" href="#">
+<area shape="rect" coords="10, 76, 49, 92" onclick="itklik('stop')" href="#">
+<area shape="rect" coords="78, 77,115, 92" onclick="itklik('record')" href="#">
+<area shape="rect" coords="11,101, 36,119" onclick="itklik('red')" href="#">
+<area shape="rect" coords="40,101, 60,119" onclick="itklik('green')" href="#">
+<area shape="rect" coords="65,101, 85,119" onclick="itklik('yellow')" href="#">
+<area shape="rect" coords="89,101,115,119" onclick="itklik('blue')" href="#">
+<area shape="rect" coords="45,124, 83,141" onclick="itklik('curup')" href="#">
+<area shape="rect" coords="15,141, 41,175" onclick="itklik('curleft')" href="#">
+<area shape="rect" coords="48,148, 76,168" onclick="itklik('ok')" href="#">
+<area shape="rect" coords="86,147,105,174" onclick="itklik('curright')" href="#">
+<area shape="rect" coords="45,175, 82,191" onclick="itklik('curdown')" href="#">
+<area shape="rect" coords="11,196, 61,214" onclick="itklik('menu')" href="#">
+<area shape="rect" coords="66,196,115,213" onclick="itklik('home')" href="#">
+<area shape="rect" coords="11,216, 45,232" onclick="itklik('guide')" href="#">
+<area shape="rect" coords="49,216, 77,232" onclick="itklik('radio')" href="#">
+<area shape="rect" coords="81,215,115,232" onclick="itklik('return')" href="#">
+<area shape="rect" coords="12,241, 43,260" onclick="itklik('volplus')" href="#">
+<area shape="rect" coords="85,241,115,259" onclick="itklik('prgplus')" href="#">
+<area shape="rect" coords="12,263, 41,283" onclick="itklik('volmin')" href="#">
+<area shape="rect" coords="51,264, 76,282" onclick="tiklik('mute')" href="#">
+<area shape="rect" coords="85,263,115,282" onclick="itklik('prgmin')" href="#">
+<area shape="rect" coords="12,289, 41,309" onclick="itklik('one')" href="#">
+<area shape="rect" coords="51,289, 76,309" onclick="itklik('two')" href="#">
+<area shape="rect" coords="87,289,113,309" onclick="itklik('three')" href="#">
+<area shape="rect" coords="12,312, 40,330" onclick="itklik('four')" href="#">
+<area shape="rect" coords="51,312, 76,330" onclick="itklik('five')" href="#">
+<area shape="rect" coords="87,312,113,330" onclick="itklik('six')" href="#">
+<area shape="rect" coords="12,334, 40,353" onclick="itklik('seven')" href="#">
+<area shape="rect" coords="51,334, 76,353" onclick="itklik('eight')" href="#">
+<area shape="rect" coords="88,334,112,353" onclick="itklik('nine')" href="#">
+<area shape="rect" coords="13,356, 40,375" onclick="itklik('opt')" href="#">
+<area shape="rect" coords="52,356, 76,374" onclick="itklik('zero')" href="#">
+<area shape="rect" coords="89,356,112,375" onclick="itklik('book')" href="#">
+</map>
+
+<map name="lgmap">
+
+<area shape="rect" coords="18, 25, 43,44" onclick="lgklik('power')" href="#">
+<area shape="rect" coords="87, 26,111,45" onclick="lgklik('tvrad')" href="#">
+<area shape="rect" coords="19, 53, 42,73" onclick="lgklik('saving')" href="#">
+<area shape="rect" coords="53, 54, 76,74" onclick="lgklik('info')" href="#">
+<area shape="rect" coords="87, 54,110,74" onclick="lgklik('input')" href="#">
+<area shape="rect" coords="18, 83, 42,102" onclick="lgklik('one')" href="#">
+<area shape="rect" coords="52, 83, 76,102" onclick="lgklik('two')" href="#">
+<area shape="rect" coords="87, 84,110,103" onclick="lgklik('three')" href="#">
+<area shape="rect" coords="18,107, 40,126" onclick="lgklik('four')" href="#">
+<area shape="rect" coords="53,108, 75,126" onclick="lgklik('five')" href="#">
+<area shape="rect" coords="87,108,109,126" onclick="lgklik('six')" href="#">
+<area shape="rect" coords="18,131, 41,151" onclick="lgklik('seven')" href="#">
+<area shape="rect" coords="51,132, 75,150" onclick="lgklik('eight')" href="#">
+<area shape="rect" coords="85,132,109,151" onclick="lgklik('nine')" href="#">
+<area shape="rect" coords="17,157, 40,175" onclick="lgklik('list')" href="#">
+<area shape="rect" coords="52,157, 74,176" onclick="lgklik('zero')" href="#">
+<area shape="rect" coords="86,156,108,175" onclick="lgklik('qview')" href="#">
+<area shape="rect" coords="16,183, 42,208" onclick="lgklik('volplus')" href="#">
+<area shape="rect" coords="51,185, 75,208" onclick="lgklik('fav')" href="#">
+<area shape="rect" coords="84,184,111,208" onclick="lgklik('prgplus')" href="#">
+<area shape="rect" coords="17,212, 42,235" onclick="lgklik('volmin')" href="#">
+<area shape="rect" coords="51,214, 75,242" onclick="lgklik('mute')" href="#">
+<area shape="rect" coords="84,212,111,236" onclick="lgklik('prgmin')" href="#">
+<area shape="rect" coords="17,244, 39,261" onclick="lgklik('menu')" href="#">
+<area shape="rect" coords="87,245,107,262" onclick="lgklik('qmenu')" href="#">
+<area shape="rect" coords="43,263, 80,279" onclick="lgklik('curup')" href="#">
+<area shape="rect" coords="17,281, 41,315" onclick="lgklik('curleft')" href="#">
+<area shape="rect" coords="48,289, 76,312" onclick="lgklik('ok')" href="#">
+<area shape="rect" coords="87,238,102,315" onclick="lgklik('curright')" href="#">
+<area shape="rect" coords="43,320, 83,335" onclick="lgklik('curdown')" href="#">
+<area shape="rect" coords="17,338, 38,355" onclick="lgklik('guide')" href="#">
+<area shape="rect" coords="87,338,107,355" onclick="lgklik('return')" href="#">
+<area shape="rect" coords="15,363, 35,374" onclick="lgklik('red')" href="#">
+<area shape="rect" coords="40,364, 58,374" onclick="lgklik('green')" href="#">
+<area shape="rect" coords="65,364, 83,374" onclick="lgklik('yellow')" href="#">
+<area shape="rect" coords="90,363,108,374" onclick="lgklik('blue')" href="#">
+<area shape="rect" coords="15,379, 42,389" onclick="lgklik('tekst')" href="#">
+<area shape="rect" coords="48,379, 76,389" onclick="lgklik('topt')" href="#">
+<area shape="rect" coords="81,380,108,389" onclick="lgklik('subttl')" href="#">
+<area shape="rect" coords="15,395, 43,404" onclick="lgklik('stop')" href="#">
+<area shape="rect" coords="47,395, 75,404" onclick="lgklik('play')" href="#">
+<area shape="rect" coords="81,395,108,405" onclick="lgklik('pause')" href="#">
+<area shape="rect" coords="14,410, 43,420" onclick="lgklik('rewind')" href="#">
+<area shape="rect" coords="48,410, 76,419" onclick="lgklik('forward')" href="#">
+<area shape="rect" coords="81,410,108,421" onclick="lgklik('link')" href="#">
+<area shape="rect" coords="47,425, 76,435" onclick="lgklik('ratio')" href="#">
+<area shape="rect" coords="80,425,108,436" onclick="lgklik('avmode')" href="#">
+</map>
+<br>
+<table>
+  <tr>
+    <td><button style="font: bold 14px Courier" onclick="rf433 ( 150, '111110fffff0', 8 )" type="button">A on</button></td>
+    <td><button style="font: bold 14px Courier" onclick="rf433 ( 150, '11111f0ffff0', 8 )" type="button">B on</button></td>
+    <td><button style="font: bold 14px Courier" onclick="rf433 ( 150, '11111ff0fff0', 8 )" type="button">C on</button></td>
+    <td><button style="font: bold 14px Courier" onclick="rf433 ( 150, '11111fff0ff0', 8 )" type="button">D on</button></td>
+    <td><button style="font: bold 14px Courier" onclick="rf433 ( 150, '11111ffff0f0', 8 )" type="button">E on</button></td>
+  </tr>
+  <tr>
+    <td><button style="font: bold 14px Courier" onclick="rf433 ( 150, '111110ffff0f', 8 )" type="button">A off</button></td>
+    <td><button style="font: bold 14px Courier" onclick="rf433 ( 150, '11111f0fff0f', 8 )" type="button">B off</button></td>
+    <td><button style="font: bold 14px Courier" onclick="rf433 ( 150, '11111ff0ff0f', 8 )" type="button">C off</button></td>
+    <td><button style="font: bold 14px Courier" onclick="rf433 ( 150, '11111fff0f0f', 8 )" type="button">D off</button></td>
+    <td><button style="font: bold 14px Courier" onclick="rf433 ( 150, '11111ffff00f', 8 )" type="button">E off</button></td>
+  </tr>
+</table>
+<br>
+<!-- input size="50" id="resultstr" value="...." -->
+<!-- The rest is javascript. -->
+<script>
+    var smcode = [] ;   // Codes for Samsung
+    var itcode = [] ;	// Codes for KPN-ITV
+    var lgcode = [] ;	// Codes for LG tv
+
+    smcode["power"]    = "C2CA807F" ;
+    smcode["tvscr"]    = "C2CA8877" ;
+    smcode["bd"]       = "" ;
+    smcode["tv"]       = "" ;
+    smcode["eject"]    = "C2CA0CF3" ;
+    smcode["sleep"]    = "C2CA847B" ;
+    smcode["one"]      = "CACA827D" ;
+    smcode["two"]      = "C2CA42BD" ;
+    smcode["three"]    = "C2CAC23D" ;
+    smcode["four"]     = "C2CA22DD" ;
+    smcode["five"]     = "C2CAA25D" ;
+    smcode["six"]      = "C2CA629D" ;
+    smcode["seven"]    = "C2CAE21D" ;
+    smcode["eight"]    = "C2CAFC03" ;
+    smcode["nine"]     = "C2CAEC13" ;
+    smcode["fullscrn"] = "C2CA0EF1" ;
+    smcode["zero"]     = "C2CAF40B" ;
+    smcode["repeat"]   = "C2CA6699" ;
+    smcode["skipback"] = "C2CAD827" ;
+    smcode["skip"]     = "C2CAC837" ;
+    smcode["rewind"]   = "C2CA2ED1" ;
+    smcode["forward"]  = "C2CAAE51" ;
+    smcode["stop"]     = "C2CAD02F" ;
+    smcode["play"]     = "C2CAC03F" ;
+    smcode["pause"]    = "C2CABE41" ;
+    smcode["volplus"]  = "C2CACC33" ;
+    smcode["mute"]     = "C2CA9C63" ;
+    smcode["prgplus"]  = "C2CAC43B" ;
+    smcode["volmin"]   = "C2CADC23" ;
+    smcode["vsound"]   = "C2CAE619" ;
+    smcode["prgmin"]   = "C2CAD42B" ;
+    smcode["dskmenu"]  = "C2CA5AA5" ;
+    smcode["menu"]     = "C2CA6C93" ;
+    smcode["ttlmnu"]   = "C2CACA35" ;
+    smcode["tools"]    = "C2CA28D7" ;
+    smcode["curup"]    = "C2CAB04F" ;
+    smcode["info"]     = "C2CA649B" ;
+    smcode["curleft"]  = "C2CAA45B" ;
+    smcode["enter"]    = "C2CAA05F" ;
+    smcode["curright"] = "C2CAB847" ;
+    smcode["return"]   = "C2CA38C7" ;
+    smcode["curdown"]  = "C2CAA857" ;
+    smcode["exit"]     = "C2CA7E81" ;
+    smcode["red"]      = "C2CADA25" ;
+    smcode["green"]    = "C2CA2AD5" ;
+    smcode["yellow"]   = "C2CAAA55" ;
+    smcode["blue"]     = "C2CAEE11" ;
+    smcode["smart"]    = "C2CADE21" ;
+    smcode["search"]   = "C2CA817E" ;
+    smcode["level"]    = "C2CAF00F" ;
+    smcode["threed"]   = "C2CA41BE" ;
+    smcode["sound"]    = "C2CAC13E" ;
+    smcode["free"]     = "" ;
+    smcode["dsp"]      = "C2CA5EA1" ;
+    smcode["vtuner"]   = "C2CA21DE" ;
+
+    itcode["tv"]       = "" ;
+    itcode["power"]    = "mSMSmsMSMSmsmsmsmsmsmsmsmsmsMSMsmSm" ;
+    itcode["rewind"]   = "mSMSmsMSMSmsmsmsmsmsmsmsMSmsmsmsMSm" ;
+    itcode["play"]     = "mSMSmsMSMSmsmsmsmsmsmsmsmsMsmSMsmSm" ;
+    itcode["forward"]  = "mSMSmsMSMSmsmsmsmsmsmsmsMSmsMSmsM" ;
+    itcode["stop"]     = "mSMSmsMSMSmsmsmsmsmsmsmsMSmsmsMSM" ;
+    itcode["record"]   = "mSMSmsMSMSmsmsmsmsmsmsmsMSmsmsMsmSm" ;
+    itcode["red"]      = "mSMSmsMSMSmsmsmsmsmsmsmsMSmsmsMsmSm" ;
+    itcode["green"]    = "mSMSmsMSMSmsmsmsmsmsmsmsmsMsmsmsmSM" ;
+    itcode["yellow"]   = "mSMSmsMSMSmsmsmsmsmsmsmsmsMsmsmsmsmSm" ;
+    itcode["blue"]     = "mSMSmsMSMSmsmsmsmsmsmsmsMSmsmsmsmsM" ;
+    itcode["curup"]    = "mSMSmsMSMSmsmsmsmsmsmsmsmsmsMsmSmsM" ;
+    itcode["curleft"]  = "mSMSmsMSMSmsmsmsmsmsmsmsmsmsMsmsmSM" ;
+    itcode["ok"]       = "mSMSmsMSMSmsmsmsmsmsmsmsmsmsMsmsmsmSm" ;
+    itcode["curright"] = "mSMSmsMSMSmsmsmsmsmsmsmsmsMSmsmsmsM" ;
+    itcode["curdown"]  = "mSMSmsMSMSmsmsmsmsmsmsmsmsmsMsmSMSm" ;
+    itcode["menu"]     = "mSMSmsMSMSmsmsmsmsmsmsmsMSMsmSMSm" ;
+    itcode["home"]     = "mSMSmsMSMSmsmsmsmsmsmsmsmsMSMSmsM" ;
+    itcode["guide"]    = "mSMSmsMSMSmsmsmsmsmsmsmsmsMSMsmSM" ;
+    itcode["radio"]    = "mSMSmsMSMSmsmsmsmsmsmsmsMSMSMsmSm" ;
+    itcode["return"]   = "mSMSmsMSMSmsmsmsmsmsmsmsmsMSmsMsmSm" ;
+    itcode["volplus"]  = "" ;
+    itcode["prgplus"]  = "mSMSmsMSMSmsmsmsmsmsmsmsmsMsmSmsMSm" ;
+    itcode["volmin"]   = "" ;
+    itcode["mute"]     = "" ;
+    itcode["prgmin"]   = "mSMSmsMSMSmsmsmsmsmsmsmsmsMsmsmSmsM" ;
+    itcode["one"]      = "mSMSmsMSMSmsmsmsmsmsmsmsmsmsmsmsmsMSm" ;
+    itcode["two"]      = "mSMSmsMSMSmsmsmsmsmsmsmsmsmsmsmsMSM" ;
+    itcode["three"]    = "mSMSmsMSMSmsmsmsmsmsmsmsmsmsmsmsMsmSm" ;
+    itcode["four"]     = "mSMSmsMSMSmsmsmsmsmsmsmsmsmsmsMSmsM" ;
+    itcode["five"]     = "mSMSmsMSMSmsmsmsmsmsmsmsmsmsmsMSMSm" ;
+    itcode["six"]      = "mSMSmsMSMSmsmsmsmsmsmsmsmsmsmsMsmSM" ;
+    itcode["seven"]    = "mSMSmsMSMSmsmsmsmsmsmsmsmsmsmsMsmsmSm" ;
+    itcode["eight"]    = "mSMSmsMSMSmsmsmsmsmsmsmsmsmsMSmsmsM" ;
+    itcode["nine"]     = "mSMSmsMSMSmsmsmsmsmsmsmsmsmsMSmsMSm" ;
+    itcode["opt"]      = "" ;
+    itcode["zero"]     = "mSMSmsMSMSmsmsmsmsmsmsmsmsmsMSMSM" ;
+    itcode["book"]     = "mSMSmsMSMSmsmsmsmsmsmsmsMSMSmsMSm" ;
+
+    lgcode["power"]    = "20DF10EF" ;
+    lgcode["tvrad"]    = "20DF0FF0" ;
+    lgcode["saving"]   = "20DFA956" ;
+    lgcode["info"]     = "20DF55AA" ;
+    lgcode["input"]    = "20DFD02F" ;
+    lgcode["one"]      = "20DF8877" ;
+    lgcode["two"]      = "20DF48B7" ;
+    lgcode["three"]    = "20DFC837" ;
+    lgcode["four"]     = "20DF28D7" ;
+    lgcode["five"]     = "20DFA857" ;
+    lgcode["six"]      = "20DF6897" ;
+    lgcode["seven"]    = "20DFE817" ;
+    lgcode["eight"]    = "20DF1817" ;
+    lgcode["nine"]     = "20DF9867" ;
+    lgcode["list"]     = "20DFCA35" ;
+    lgcode["zero"]     = "20DF08F7" ;
+    lgcode["qview"]    = "20DF58A7" ;
+    lgcode["volplus"]  = "20DF40BF" ;
+    lgcode["fav"]      = "20DF7887" ;
+    lgcode["prgplus"]  = "20DF00FF" ;
+    lgcode["volmin"]   = "20DFC03F" ;
+    lgcode["mute"]     = "20DF906F" ;
+    lgcode["prgmin"]   = "20DF807F" ;
+    lgcode["menu"]     = "20DFC23D" ;
+    lgcode["qmenu"]    = "20DFA25D" ;
+    lgcode["curup"]    = "20DF02FD" ;
+    lgcode["curleft"]  = "20DFE01F" ;
+    lgcode["ok"]       = "20DF22DD" ;
+    lgcode["curright"] = "20DF609F" ;
+    lgcode["curdown"]  = "20DF827D" ;
+    lgcode["guide"]    = "20DFD52A" ;
+    lgcode["return"]   = "20DF14EB" ;
+    lgcode["red"]      = "20DF4EB1" ;
+    lgcode["green"]    = "20DF8E71" ;
+    lgcode["yellow"]   = "20DFC639" ;
+    lgcode["blue"]     = "20DF8679" ;
+    lgcode["tekst"]    = "20DF04FB" ;
+    lgcode["topt"]     = "20DF847B" ;
+    lgcode["subttl"]   = "20DF9C63" ;
+    lgcode["stop"]     = "20DF8D72" ;
+    lgcode["play"]     = "20DF0DF2" ;
+    lgcode["pause"]    = "20DF5DA2" ;
+    lgcode["rewind"]   = "20DFF10E" ;
+    lgcode["forward"]  = "20DF718E" ;
+    lgcode["link"]     = "20DF7E81" ;
+    lgcode["ratio"]    = "20DF9E61" ;
+    lgcode["avmode"]   = "20DF0CF3" ;
+
+
+    // Send a request to the ESP8266
+    function httpGet ( theReq )
+    {
+      var theUrl = "/" + theReq + "&version=" + Math.random() ;
+      var xhr = new XMLHttpRequest() ;
+      xhr.onreadystatechange = function() {
+        if ( xhr.readyState == XMLHttpRequest.DONE )
+        {
+          //resultstr.value = xhr.responseText ;
+        }
+      }
+      xhr.open ( "GET", theUrl, true ) ;
+      xhr.send ( null ) ;
+      document.getElementById ( 'tick' ).play() ;
+    } 
+
+
+    // Button (area) of Samsung remote control pressed
+    function smklik(a)
+    {
+      var hexcode = smcode[a] ;	// Hexcode to be send
+
+      if ( hexcode.length > 0 )
+      {
+        httpGet ( "?samsung&" + hexcode + "&" + a ) ;
+      }
+    }
+
+
+    // Button (area) of Samsung DVD remote control pressed
+    function itklik(a)
+    {
+      var itvcode = itcode[a] ;	// Hexcode to be send
+
+      if ( itvcode.length > 0 )
+      {
+        httpGet ( "?kpnitv&" + itvcode + "&" + a ) ;
+      }
+    }
+
+
+    // Button (area) of LG tv remote control pressed
+    function lgklik(a)
+    {
+      var hexcode = lgcode[a] ;	// Hexcode to be send
+
+      if ( hexcode.length > 0 )
+      {
+        httpGet ( "?lgtv&" + hexcode + "&" + a ) ;
+      }
+    }
+
+
+    // Button for RF433 sender pressed
+    function rf433 ( a, b, c ) 
+    {
+      httpGet ( "?rf433&" + a + "&" + b + "&" + c ) ;
+    }
+
+</script>
+</body>
+</html>
