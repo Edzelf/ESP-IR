@@ -14,3 +14,5 @@ Features:
 -	Update of software over WiFi (OTA).
 
 See pdf-file for a full description.
+
+Update 20-07-2017: Correction for IRremoteESP8266 v2.0 library.
