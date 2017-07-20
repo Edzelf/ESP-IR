@@ -14,6 +14,7 @@
 // 15-10-2015, ES: Show hostname on netwerk
 // 09-03-2016, ES: Selective choice of WiFi netwerk
 // 31-05-2016, ES: Combine ESP8266 and Arduino functions
+// 20-07-2017, ES: Corrections for IRremoteESP8266 v2.0
 //
 // Wiring:
 // NodeMCU  GPIO    Pin to program  Connect to
@@ -22,6 +23,7 @@
 // D2       GPIO4    4              IR leds driver
 //
 #include <IRremoteESP8266.h>
+#include <IRsend.h>
 #include <ESP8266WiFi.h>
 #include <ESPAsyncTCP.h>
 #include <ESPAsyncWebServer.h>
@@ -41,7 +43,7 @@ extern "C"
 // Debug buffer size
 #define DEBUG_BUFFER_SIZE 100
 // Version number
-#define VERSION "31-may-2016"
+#define VERSION "20-jul-2017"
 // Output pins
 #define IR_PIN 4
 #define RF_PIN 0
@@ -125,8 +127,8 @@ unsigned long hextolong ( const char* hexstr )
 //******************************************************************************************
 void snditv ( const char* str )
 {
-  unsigned int sndbuf[50] ;
-  int          i = 0 ;
+  uint16_t   sndbuf[50] ;
+  uint16_t   i = 0 ;
 
   while ( *str )                          // Convert all characters
   {
